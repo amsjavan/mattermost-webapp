@@ -17,6 +17,7 @@ import tr from './tr.json';
 import uk from './uk.json';
 import zhTW from './zh-TW.json';
 import zhCN from './zh-CN.json';
+import fa from './fa.json';
 
 import {getConfig} from 'mattermost-redux/selectors/entities/general';
 
@@ -119,6 +120,12 @@ const languages = {
         name: '中文 (简体)',
         order: 13,
         url: zhCN,
+    },
+    fa: {
+        value: 'fa',
+        name: 'فارسی',
+        order: 15,
+        url: fa,
     },
 };
 

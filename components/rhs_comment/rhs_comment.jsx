@@ -544,7 +544,10 @@ class RhsComment extends React.PureComponent {
                             </div>
                             {options}
                         </div>
-                        <div className='post__body' >
+                        <div
+                            className='post__body'
+                            dir='auto'
+                        >
                             <div className={postClass}>
                                 {failedPostOptions}
                                 <MessageWithAdditionalContent

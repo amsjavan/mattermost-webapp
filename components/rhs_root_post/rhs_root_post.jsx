@@ -427,7 +427,10 @@ class RhsRootPost extends React.PureComponent {
                             </div>
                             {dotMenuContainer}
                         </div>
-                        <div className='post__body'>
+                        <div
+                            className='post__body'
+                            dir='auto'
+                        >
                             <div className={postClass}>
                                 <MessageWithAdditionalContent
                                     post={post}

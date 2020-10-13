@@ -364,6 +364,11 @@ exports[`components/admin_console/SchemaAdminSettings should match snapshot with
                   "text": "日本語",
                   "value": "ja",
                 },
+                Object {
+                  "order": 15,
+                  "text": "فارسی",
+                  "value": "fa",
+                },
               ]
             }
           />
@@ -469,6 +474,11 @@ exports[`components/admin_console/SchemaAdminSettings should match snapshot with
                   "order": 15,
                   "text": "日本語",
                   "value": "ja",
+                },
+                Object {
+                  "order": 15,
+                  "text": "فارسی",
+                  "value": "fa",
                 },
               ]
             }
