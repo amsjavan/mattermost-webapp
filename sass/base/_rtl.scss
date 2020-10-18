@@ -14,6 +14,15 @@ body.rtl
   .font--open_sans {
     font-family: 'vazir', sans-serif !important;
   }
+
+  .post__permalink {
+    text-align: right;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+  }
+
   .tootip
   {
     .tooltip-inner
