@@ -8,7 +8,7 @@ body.farsi
 }
 body.rtl
 {
-  direction: rtl;
+  // direction: rtl;
   @include font-smoothing;
   font-family: 'vazir', sans-serif !important;
   .font--open_sans {
