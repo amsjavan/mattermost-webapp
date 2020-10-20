@@ -25,6 +25,17 @@ body.rtl
       }
     }
   }
+
+  .help-text 
+  {
+    direction: rtl;
+    text-align: justify;
+  }
+
+  .channel-intro-text
+  {
+    direction: rtl;
+  }
   // .post-list__dynamic
   // {
   //   overflow-x: hidden;
