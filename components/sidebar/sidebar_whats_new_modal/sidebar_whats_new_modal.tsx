@@ -37,7 +37,7 @@ export default function SidebarWhatsNewModal(props: Props) {
 
     return (
         <GenericModal
-            show={true}
+            show={false}
             onHide={onHide}
             handleConfirm={onHide}
             modalHeaderText={(
