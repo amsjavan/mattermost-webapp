@@ -495,7 +495,7 @@ export default class SignupEmail extends React.PureComponent {
                 {hasAccounts && <BackButton onClick={() => trackEvent('signup_email', 'click_back')}/>}
                 <div
                     id='signup_email_section'
-                    className='col-sm-12'
+                    className='col-sm-12 signup-section'
                 >
                     <div className='signup-team__container padding--less'>
                         <img
