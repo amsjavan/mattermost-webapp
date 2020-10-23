@@ -2100,6 +2100,7 @@
   "generic_icons.success": "آیکن موفق",
   "generic_icons.upload": "آیکن آپلود",
   "generic_icons.warning": "آیکن هشدار",
+  "generic_modal.cancel": "لغو",
   "get_app.alreadyHaveIt": "قبلاً آن را داشتید؟",
   "get_app.androidAppName": "Mattermost  برای اندروید",
   "get_app.androidHeader": "اگر به برنامه Android ما بروید ، Mattermost بهتر جواب می دهد",
