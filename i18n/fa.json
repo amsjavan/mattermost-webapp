@@ -1699,7 +1699,7 @@
   "channel_info.notFound": "هیچ کانال پیدا نشد",
   "channel_info.purpose": "هدف:",
   "channel_info.url": "URL:",
-  "channel_invite.addNewMembers": "افزودن عضو جدید به",
+  "channel_invite.addNewMembers": " افزودن عضو جدید به",
   "channel_loader.posted": "ارسال شد",
   "channel_loader.postedImage": " تصویری ارسال کرد",
   "channel_loader.socketError": "لطفاً اتصال را بررسی کنید ، Mattermost غیرقابل دسترسی است. در صورت ادامه یافتن مشکل ، از سرپرست بخواهید تا [پورت WebSocket را بررسی کند](!https://about.mattermost.com/default-websocket-port-help).",
