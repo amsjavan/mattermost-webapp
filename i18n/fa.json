@@ -1369,6 +1369,8 @@
   "admin.support.aboutTitle": "لینک درباره :",
   "admin.support.emailHelp": "آدرس ایمیل در اعلان های ایمیل و در طول آموزش برای کاربران نهایی برای پرسیدن سوالات پشتیبانی نمایش داده می شود.",
   "admin.support.emailTitle": "ایمیل پشتیبانی:",
+  "admin.support.enableAskCommunityDesc": "When true, \"Ask the community\" link appears on the Mattermost user interface and Main Menu, which allows users to join the Mattermost Community to ask questions and help others troubleshoot issues. When false, the link is hidden from users.",
+  "admin.support.enableAskCommunityTitle": "Enable Ask Community Link:",
   "admin.support.enableTermsOfServiceHelp": "در صورت صحت ، کاربران جدید باید قبل از دسترسی به تیم های Ghasedak در دسک تاپ ، وب یا تلفن همراه ، شرایط خدمات را بپذیرند. کاربران موجود باید پس از ورود یا تازه سازی صفحه آنها را بپذیرند.\n \n برای به روزرسانی لینک خدمات نشان داده شده در ایجاد حساب و صفحات ورود به سیستم ، به [پیکربندی سایت> سفارشی سازی](../site_config/customization) بروید.",
   "admin.support.enableTermsOfServiceTitle": "فعال کردن شرایط سفارشی سرویس:",
   "admin.support.helpDesc": "URL پیوند راهنما در صفحه ورود به سیستم Ghasedak ، صفحات ثبت نام و منوی اصلی. اگر این قسمت خالی باشد ، پیوند راهنما از دید کاربران پنهان است.",

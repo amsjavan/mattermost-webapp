@@ -1695,6 +1695,7 @@ const AdminDefinition = {
                         help_text: t('admin.support.enableAskCommunityDesc'),
                         help_text_default: 'When true, "Ask the community" link appears on the Mattermost user interface and Main Menu, which allows users to join the Mattermost Community to ask questions and help others troubleshoot issues. When false, the link is hidden from users.',
                         isDisabled: it.not(it.userHasWritePermissionOnResource('site')),
+                        isHidden: () => true,
                     },
                     {
                         type: Constants.SettingsTypes.TYPE_TEXT,
