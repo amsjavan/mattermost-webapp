@@ -180,265 +180,266 @@ export default class LicenseSettings extends React.PureComponent {
         setTimeout(this.checkRestarted, 1000);
     }
 
-    render() {
-        let gettingTrialError = '';
-        if (this.state.gettingTrialError) {
-            gettingTrialError = (
-                <p className='trial-error'>
-                    <FormattedMarkdownMessage
-                        id='admin.license.trial-request.error'
-                        defaultMessage='Trial license could not be retrieved. Visit [https://mattermost.com/trial/](https://mattermost.com/trial/) to request a license.'
-                    />
-                </p>
-            );
-        }
+    render () {}
+    // render() {
+    //     let gettingTrialError = '';
+    //     if (this.state.gettingTrialError) {
+    //         gettingTrialError = (
+    //             <p className='trial-error'>
+    //                 <FormattedMarkdownMessage
+    //                     id='admin.license.trial-request.error'
+    //                     defaultMessage='Trial license could not be retrieved. Visit [https://mattermost.com/trial/](https://mattermost.com/trial/) to request a license.'
+    //                 />
+    //             </p>
+    //         );
+    //     }
 
-        const {license, upgradedFromTE, isDisabled} = this.props;
-        const {uploading} = this.state;
+    //     const {license, upgradedFromTE, isDisabled} = this.props;
+    //     const {uploading} = this.state;
 
-        let edition;
-        let licenseType;
-        let licenseContent;
-        let eelicense;
+    //     let edition;
+    //     let licenseType;
+    //     let licenseContent;
+    //     let eelicense;
 
-        const issued = (
-            <React.Fragment>
-                <FormattedDate value={new Date(parseInt(license.IssuedAt, 10))}/>
-                {' '}
-                <FormattedTime value={new Date(parseInt(license.IssuedAt, 10))}/>
-            </React.Fragment>
-        );
-        const startsAt = <FormattedDate value={new Date(parseInt(license.StartsAt, 10))}/>;
-        const expiresAt = <FormattedDate value={new Date(parseInt(license.ExpiresAt, 10))}/>;
+    //     const issued = (
+    //         <React.Fragment>
+    //             <FormattedDate value={new Date(parseInt(license.IssuedAt, 10))}/>
+    //             {' '}
+    //             <FormattedTime value={new Date(parseInt(license.IssuedAt, 10))}/>
+    //         </React.Fragment>
+    //     );
+    //     const startsAt = <FormattedDate value={new Date(parseInt(license.StartsAt, 10))}/>;
+    //     const expiresAt = <FormattedDate value={new Date(parseInt(license.ExpiresAt, 10))}/>;
 
-        if (!this.props.enterpriseReady) { // Team Edition
-            // Note: DO NOT LOCALISE THESE STRINGS. Legally we can not since the license is in English.
-            edition = (
-                <div>
-                    <p>{'Mattermost Team Edition. Upgrade to Mattermost Enterprise Edition to add the ability to unlock enterprise features.'}</p>
-                    {this.state.upgradingPercentage !== 100 &&
-                        <div>
-                            <p>
-                                <button
-                                    onClick={this.handleUpgrade}
-                                    className='btn btn-primary'
-                                >
-                                    <LoadingWrapper
-                                        loading={this.state.upgradingPercentage > 0}
-                                        text={
-                                            <FormattedMessage
-                                                id='admin.license.enterprise.upgrading'
-                                                defaultMessage='Upgrading {percentage}%'
-                                                values={{percentage: this.state.upgradingPercentage}}
-                                            />
-                                        }
-                                    >
-                                        <FormattedMessage
-                                            id='admin.license.enterprise.upgrade'
-                                            defaultMessage='Upgrade to Enterprise Edition'
-                                        />
-                                    </LoadingWrapper>
-                                </button>
-                            </p>
-                            <p className='upgrade-legal-terms'>
-                                <FormattedMarkdownMessage
-                                    id='admin.license.enterprise.upgrade.accept-terms'
-                                    defaultMessage='By clicking **Upgrade to Enterprise Edition**, I agree to the terms of the Mattermost Enterprise Edition License.'
-                                />
-                            </p>
-                            {this.state.upgradeError &&
-                                <div className='col-sm-12'>
-                                    <div className='form-group has-error'>
-                                        <label className='control-label'>
-                                            <span dangerouslySetInnerHTML={{__html: format(this.state.upgradeError)}}/>
-                                        </label>
-                                    </div>
-                                </div>}
-                        </div>}
-                    {this.state.upgradingPercentage === 100 &&
-                        <div>
-                            <p>
-                                <FormattedMarkdownMessage
-                                    id='admin.license.upgraded-restart'
-                                    defaultMessage='You have upgraded your binary to mattermost enterprise, please restart the server to start using the new binary. You can do it right here:'
-                                />
-                            </p>
-                            <p>
-                                <button
-                                    onClick={this.handleRestart}
-                                    className='btn btn-primary'
-                                >
-                                    <LoadingWrapper
-                                        loading={this.state.restarting}
-                                        text={Utils.localizeMessage('admin.license.enterprise.restarting', 'Restarting')}
-                                    >
-                                        <FormattedMessage
-                                            id='admin.license.enterprise.restart'
-                                            defaultMessage='Restart Server'
-                                        />
-                                    </LoadingWrapper>
-                                    {this.state.restartError &&
-                                        <div className='col-sm-12'>
-                                            <div className='form-group has-error'>
-                                                <label className='control-label'>{this.state.restartError}</label>
-                                            </div>
-                                        </div>}
-                                </button>
-                            </p>
-                        </div>}
-                </div>
-            );
+    //     if (!this.props.enterpriseReady) { // Team Edition
+    //         // Note: DO NOT LOCALISE THESE STRINGS. Legally we can not since the license is in English.
+    //         edition = (
+    //             <div>
+    //                 <p>{'Mattermost Team Edition. Upgrade to Mattermost Enterprise Edition to add the ability to unlock enterprise features.'}</p>
+    //                 {this.state.upgradingPercentage !== 100 &&
+    //                     <div>
+    //                         <p>
+    //                             <button
+    //                                 onClick={this.handleUpgrade}
+    //                                 className='btn btn-primary'
+    //                             >
+    //                                 <LoadingWrapper
+    //                                     loading={this.state.upgradingPercentage > 0}
+    //                                     text={
+    //                                         <FormattedMessage
+    //                                             id='admin.license.enterprise.upgrading'
+    //                                             defaultMessage='Upgrading {percentage}%'
+    //                                             values={{percentage: this.state.upgradingPercentage}}
+    //                                         />
+    //                                     }
+    //                                 >
+    //                                     <FormattedMessage
+    //                                         id='admin.license.enterprise.upgrade'
+    //                                         defaultMessage='Upgrade to Enterprise Edition'
+    //                                     />
+    //                                 </LoadingWrapper>
+    //                             </button>
+    //                         </p>
+    //                         <p className='upgrade-legal-terms'>
+    //                             <FormattedMarkdownMessage
+    //                                 id='admin.license.enterprise.upgrade.accept-terms'
+    //                                 defaultMessage='By clicking **Upgrade to Enterprise Edition**, I agree to the terms of the Mattermost Enterprise Edition License.'
+    //                             />
+    //                         </p>
+    //                         {this.state.upgradeError &&
+    //                             <div className='col-sm-12'>
+    //                                 <div className='form-group has-error'>
+    //                                     <label className='control-label'>
+    //                                         <span dangerouslySetInnerHTML={{__html: format(this.state.upgradeError)}}/>
+    //                                     </label>
+    //                                 </div>
+    //                             </div>}
+    //                     </div>}
+    //                 {this.state.upgradingPercentage === 100 &&
+    //                     <div>
+    //                         <p>
+    //                             <FormattedMarkdownMessage
+    //                                 id='admin.license.upgraded-restart'
+    //                                 defaultMessage='You have upgraded your binary to mattermost enterprise, please restart the server to start using the new binary. You can do it right here:'
+    //                             />
+    //                         </p>
+    //                         <p>
+    //                             <button
+    //                                 onClick={this.handleRestart}
+    //                                 className='btn btn-primary'
+    //                             >
+    //                                 <LoadingWrapper
+    //                                     loading={this.state.restarting}
+    //                                     text={Utils.localizeMessage('admin.license.enterprise.restarting', 'Restarting')}
+    //                                 >
+    //                                     <FormattedMessage
+    //                                         id='admin.license.enterprise.restart'
+    //                                         defaultMessage='Restart Server'
+    //                                     />
+    //                                 </LoadingWrapper>
+    //                                 {this.state.restartError &&
+    //                                     <div className='col-sm-12'>
+    //                                         <div className='form-group has-error'>
+    //                                             <label className='control-label'>{this.state.restartError}</label>
+    //                                         </div>
+    //                                     </div>}
+    //                             </button>
+    //                         </p>
+    //                     </div>}
+    //             </div>
+    //         );
 
-            licenseType = (
-                <div>
-                    <p>{'When using Mattermost Team Edition, the software is offered under a Mattermost MIT Compiled License. See MIT-COMPILED-LICENSE.md in your root install directory for details.'}</p>
-                    <p>{'When using Mattermost Enterprise Edition, the software is offered under a commercial license. See below for “Enterprise Edition License” for details.'}</p>
-                    <p>{'See NOTICE.txt for information about open source software used in the system.'}</p>
-                </div>
-            );
+    //         licenseType = (
+    //             <div>
+    //                 <p>{'When using Mattermost Team Edition, the software is offered under a Mattermost MIT Compiled License. See MIT-COMPILED-LICENSE.md in your root install directory for details.'}</p>
+    //                 <p>{'When using Mattermost Enterprise Edition, the software is offered under a commercial license. See below for “Enterprise Edition License” for details.'}</p>
+    //                 <p>{'See NOTICE.txt for information about open source software used in the system.'}</p>
+    //             </div>
+    //         );
 
-            eelicense = this.renderEELicenseText();
-        } else if (license.IsLicensed === 'true' && !uploading) {
-            // Note: DO NOT LOCALISE THESE STRINGS. Legally we can not since the license is in English.
-            const sku = license.SkuShortName ? <React.Fragment>{`Edition: Mattermost Enterprise Edition ${license.SkuShortName}`}<br/></React.Fragment> : null;
-            edition = 'Mattermost Enterprise Edition. Enterprise features on this server have been unlocked with a license key and a valid subscription.';
-            if (upgradedFromTE) {
-                eelicense = this.renderEELicenseText();
-            }
-            licenseType = (
-                <div>
-                    {!upgradedFromTE &&
-                        <p>
-                            {'This software is offered under a commercial license.\n\nSee ENTERPRISE-EDITION-LICENSE.txt in your root install directory for details. See NOTICE.txt for information about open source software used in this system.\n\nYour subscription details are as follows:'}
-                        </p>}
-                    {upgradedFromTE &&
-                        <div>
-                            <p>{'When using Mattermost Enterprise Edition, the software is offered under a commercial license. See below for “Enterprise Edition License” for details.'}</p>
-                            <p>{'See NOTICE.txt for information about open source software used in the system.'}</p>
-                            <p>{'Your subscription details are as follows:'}</p>
-                        </div>}
-                    {`Name: ${license.Name}`}<br/>
-                    {`Company or organization name: ${license.Company}`}<br/>
-                    {sku}
-                    {`Number of users: ${license.Users}`}<br/>
-                    {'License issued: '}{issued}<br/>
-                    {'Start date of license: '}{startsAt}<br/>
-                    {'Expiry date of license: '}{expiresAt}<br/>
-                    <br/>
-                    {'See also '}
-                    <a
-                        rel='noopener noreferrer'
-                        target='_blank'
-                        href='https://about.mattermost.com/enterprise-edition-terms/'
-                    >{'Enterprise Edition Terms of Service'}</a>{' and '}
-                    <a
-                        rel='noopener noreferrer'
-                        target='_blank'
-                        href='https://about.mattermost.com/default-privacy-policy/'
-                    >{'Privacy Policy.'}</a>
-                </div>
-            );
-            licenseContent = this.renderE10E20Content();
-        } else {
-            // Note: DO NOT LOCALISE THESE STRINGS. Legally we can not since the license is in English.
-            edition = (
-                <div>
-                    {'Mattermost Enterprise Edition. A license is required to unlock enterprise features.'}
-                    <p className='trial'>
-                        <button
-                            className='btn btn-primary'
-                            onClick={this.requestLicense}
-                            disabled={isDisabled}
-                        >
-                            <LoadingWrapper
-                                loading={this.state.gettingTrial}
-                                text={Utils.localizeMessage('admin.license.trial-request.loading', 'Getting trial')}
-                            >
-                                <FormattedMessage
-                                    id='admin.license.trial-request.submit'
-                                    defaultMessage='Start trial'
-                                />
-                            </LoadingWrapper>
-                        </button>
-                    </p>
-                    {gettingTrialError}
-                    <p className='trial-legal-terms'>
-                        <FormattedMarkdownMessage
-                            id='admin.license.trial-request.accept-terms'
-                            defaultMessage='By clicking **Start trial**, I agree to the [Mattermost Software Evaluation Agreement](!https://mattermost.com/software-evaluation-agreement/), [Privacy Policy](!https://mattermost.com/privacy-policy/), and receiving product emails.'
-                        />
-                    </p>
-                </div>
-            );
+    //         eelicense = this.renderEELicenseText();
+    //     } else if (license.IsLicensed === 'true' && !uploading) {
+    //         // Note: DO NOT LOCALISE THESE STRINGS. Legally we can not since the license is in English.
+    //         const sku = license.SkuShortName ? <React.Fragment>{`Edition: Mattermost Enterprise Edition ${license.SkuShortName}`}<br/></React.Fragment> : null;
+    //         edition = 'Mattermost Enterprise Edition. Enterprise features on this server have been unlocked with a license key and a valid subscription.';
+    //         if (upgradedFromTE) {
+    //             eelicense = this.renderEELicenseText();
+    //         }
+    //         licenseType = (
+    //             <div>
+    //                 {!upgradedFromTE &&
+    //                     <p>
+    //                         {'This software is offered under a commercial license.\n\nSee ENTERPRISE-EDITION-LICENSE.txt in your root install directory for details. See NOTICE.txt for information about open source software used in this system.\n\nYour subscription details are as follows:'}
+    //                     </p>}
+    //                 {upgradedFromTE &&
+    //                     <div>
+    //                         <p>{'When using Mattermost Enterprise Edition, the software is offered under a commercial license. See below for “Enterprise Edition License” for details.'}</p>
+    //                         <p>{'See NOTICE.txt for information about open source software used in the system.'}</p>
+    //                         <p>{'Your subscription details are as follows:'}</p>
+    //                     </div>}
+    //                 {`Name: ${license.Name}`}<br/>
+    //                 {`Company or organization name: ${license.Company}`}<br/>
+    //                 {sku}
+    //                 {`Number of users: ${license.Users}`}<br/>
+    //                 {'License issued: '}{issued}<br/>
+    //                 {'Start date of license: '}{startsAt}<br/>
+    //                 {'Expiry date of license: '}{expiresAt}<br/>
+    //                 <br/>
+    //                 {'See also '}
+    //                 <a
+    //                     rel='noopener noreferrer'
+    //                     target='_blank'
+    //                     href='https://about.mattermost.com/enterprise-edition-terms/'
+    //                 >{'Enterprise Edition Terms of Service'}</a>{' and '}
+    //                 <a
+    //                     rel='noopener noreferrer'
+    //                     target='_blank'
+    //                     href='https://about.mattermost.com/default-privacy-policy/'
+    //                 >{'Privacy Policy.'}</a>
+    //             </div>
+    //         );
+    //         licenseContent = this.renderE10E20Content();
+    //     } else {
+    //         // Note: DO NOT LOCALISE THESE STRINGS. Legally we can not since the license is in English.
+    //         edition = (
+    //             <div>
+    //                 {'Mattermost Enterprise Edition. A license is required to unlock enterprise features.'}
+    //                 <p className='trial'>
+    //                     <button
+    //                         className='btn btn-primary'
+    //                         onClick={this.requestLicense}
+    //                         disabled={isDisabled}
+    //                     >
+    //                         <LoadingWrapper
+    //                             loading={this.state.gettingTrial}
+    //                             text={Utils.localizeMessage('admin.license.trial-request.loading', 'Getting trial')}
+    //                         >
+    //                             <FormattedMessage
+    //                                 id='admin.license.trial-request.submit'
+    //                                 defaultMessage='Start trial'
+    //                             />
+    //                         </LoadingWrapper>
+    //                     </button>
+    //                 </p>
+    //                 {gettingTrialError}
+    //                 <p className='trial-legal-terms'>
+    //                     <FormattedMarkdownMessage
+    //                         id='admin.license.trial-request.accept-terms'
+    //                         defaultMessage='By clicking **Start trial**, I agree to the [Mattermost Software Evaluation Agreement](!https://mattermost.com/software-evaluation-agreement/), [Privacy Policy](!https://mattermost.com/privacy-policy/), and receiving product emails.'
+    //                     />
+    //                 </p>
+    //             </div>
+    //         );
 
-            if (upgradedFromTE) {
-                licenseType = (
-                    <div>
-                        <p>{'When using Mattermost Enterprise Edition, the software is offered under a commercial license. See below for “Enterprise Edition License” for details.'}</p>
-                        <p>{'See NOTICE.txt for information about open source software used in the system.'}</p>
-                    </div>
-                );
-                eelicense = this.renderEELicenseText();
-            } else {
-                licenseType = 'This software is offered under a commercial license.\n\nSee ENTERPRISE-EDITION-LICENSE.txt in your root install directory for details. See NOTICE.txt for information about open source software used in this system.';
-            }
+    //         if (upgradedFromTE) {
+    //             licenseType = (
+    //                 <div>
+    //                     <p>{'When using Mattermost Enterprise Edition, the software is offered under a commercial license. See below for “Enterprise Edition License” for details.'}</p>
+    //                     <p>{'See NOTICE.txt for information about open source software used in the system.'}</p>
+    //                 </div>
+    //             );
+    //             eelicense = this.renderEELicenseText();
+    //         } else {
+    //             licenseType = 'This software is offered under a commercial license.\n\nSee ENTERPRISE-EDITION-LICENSE.txt in your root install directory for details. See NOTICE.txt for information about open source software used in this system.';
+    //         }
 
-            licenseContent = this.renderE0Content();
-        }
+    //         licenseContent = this.renderE0Content();
+    //     }
 
-        return (
-            <div className='wrapper--fixed'>
-                <FormattedAdminHeader
-                    id='admin.license.title'
-                    defaultMessage='Edition and License'
-                />
+    //     return (
+    //         <div className='wrapper--fixed'>
+    //             <FormattedAdminHeader
+    //                 id='admin.license.title'
+    //                 defaultMessage='Edition and License'
+    //             />
 
-                <div className='admin-console__wrapper'>
-                    <div className='admin-console__content'>
-                        <form
-                            className='form-horizontal'
-                            role='form'
-                        >
-                            <div className='form-group'>
-                                <label
-                                    className='control-label col-sm-4'
-                                >
-                                    <FormattedMessage
-                                        id='admin.license.edition'
-                                        defaultMessage='Edition: '
-                                    />
-                                </label>
-                                <div className='col-sm-8'>
-                                    {edition}
-                                </div>
-                            </div>
-                            <div className='form-group'>
-                                <label
-                                    className='control-label col-sm-4'
-                                >
-                                    <FormattedMessage
-                                        id='admin.license.type'
-                                        defaultMessage='License: '
-                                    />
-                                </label>
-                                <div className='col-sm-8'>
-                                    {licenseType}
-                                </div>
-                            </div>
-                            {licenseContent &&
-                                <div className='form-group'>
-                                    {licenseContent}
-                                </div>}
-                            {eelicense &&
-                                <div className='form-group'>
-                                    {eelicense}
-                                </div>}
-                        </form>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+    //             <div className='admin-console__wrapper'>
+    //                 <div className='admin-console__content'>
+    //                     <form
+    //                         className='form-horizontal'
+    //                         role='form'
+    //                     >
+    //                         <div className='form-group'>
+    //                             <label
+    //                                 className='control-label col-sm-4'
+    //                             >
+    //                                 <FormattedMessage
+    //                                     id='admin.license.edition'
+    //                                     defaultMessage='Edition: '
+    //                                 />
+    //                             </label>
+    //                             <div className='col-sm-8'>
+    //                                 {edition}
+    //                             </div>
+    //                         </div>
+    //                         <div className='form-group'>
+    //                             <label
+    //                                 className='control-label col-sm-4'
+    //                             >
+    //                                 <FormattedMessage
+    //                                     id='admin.license.type'
+    //                                     defaultMessage='License: '
+    //                                 />
+    //                             </label>
+    //                             <div className='col-sm-8'>
+    //                                 {licenseType}
+    //                             </div>
+    //                         </div>
+    //                         {licenseContent &&
+    //                             <div className='form-group'>
+    //                                 {licenseContent}
+    //                             </div>}
+    //                         {eelicense &&
+    //                             <div className='form-group'>
+    //                                 {eelicense}
+    //                             </div>}
+    //                     </form>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 
     renderE10E20Content = () => {
         let removeButtonText = (
