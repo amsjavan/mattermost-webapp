@@ -1511,7 +1511,8 @@ const AdminDefinition = {
             url: 'environment/session_lengths',
             title: t('admin.sidebar.sessionLengths'),
             title_default: 'Session Lengths',
-            isHidden: it.configIsTrue('ExperimentalSettings', 'RestrictSystemAdmin'),
+            // isHidden: it.configIsTrue('ExperimentalSettings', 'RestrictSystemAdmin'),
+            isHidden: () => true,
             searchableStrings: [
                 'admin.sessionLengths.title',
                 'admin.service.webSessionDaysDesc.extendLength',
@@ -2400,6 +2401,7 @@ const AdminDefinition = {
             url: 'site_config/notices',
             title: t('admin.sidebar.notices'),
             title_default: 'Notices',
+            isHidden: () => true,
             schema: {
                 id: 'NoticesSettings',
                 name: t('admin.site.notices'),
@@ -2585,6 +2587,7 @@ const AdminDefinition = {
             url: 'authentication/mfa',
             title: t('admin.sidebar.mfa'),
             title_default: 'MFA',
+            isHidden: () => true,
             schema: {
                 id: 'ServiceSettings',
                 name: t('admin.authentication.mfa'),
@@ -3847,7 +3850,8 @@ const AdminDefinition = {
             url: 'authentication/gitlab',
             title: t('admin.sidebar.gitlab'),
             title_default: 'GitLab',
-            isHidden: it.licensed,
+            // isHidden: it.licensed,
+            isHidden: () => true,
             schema: {
                 id: 'GitLabSettings',
                 name: t('admin.authentication.gitlab'),
@@ -4327,7 +4331,8 @@ const AdminDefinition = {
         sectionTitle: t('admin.sidebar.plugins'),
         sectionTitleDefault: 'Plugins (Beta)',
         id: 'plugins',
-        isHidden: it.not(it.userHasReadPermissionOnResource('plugins')),
+        // isHidden: it.not(it.userHasReadPermissionOnResource('plugins')),
+        isHidden: () => true,
         plugin_management: {
             url: 'plugins/plugin_management',
             title: t('admin.plugins.pluginManagement'),
@@ -5298,7 +5303,8 @@ const AdminDefinition = {
             url: 'experimental/blevesearch',
             title: t('admin.sidebar.blevesearch'),
             title_default: 'Bleve',
-            isHidden: it.configIsTrue('ExperimentalSettings', 'RestrictSystemAdmin'),
+            // isHidden: it.configIsTrue('ExperimentalSettings', 'RestrictSystemAdmin'),
+            isHidden: () => true,
             isDisabled: it.not(it.userHasWritePermissionOnResource('experimental')),
             searchableStrings: [
                 'admin.bleve.title',
