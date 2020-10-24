@@ -184,10 +184,11 @@ const AdminDefinition = {
         icon: 'fa-info-circle',
         sectionTitle: t('admin.sidebar.about'),
         sectionTitleDefault: 'About',
-        isHidden: it.any(
-            it.configIsTrue('ExperimentalSettings', 'RestrictSystemAdmin'),
-            it.not(it.userHasReadPermissionOnResource('about')),
-        ),
+        // isHidden: it.any(
+        //     it.configIsTrue('ExperimentalSettings', 'RestrictSystemAdmin'),
+        //     it.not(it.userHasReadPermissionOnResource('about')),
+        // ),
+        isHidden: () => false,
         license: {
             url: 'about/license',
             title: t('admin.sidebar.license'),
