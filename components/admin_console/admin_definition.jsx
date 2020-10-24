@@ -188,7 +188,7 @@ const AdminDefinition = {
         //     it.configIsTrue('ExperimentalSettings', 'RestrictSystemAdmin'),
         //     it.not(it.userHasReadPermissionOnResource('about')),
         // ),
-        isHidden: () => false,
+        isHidden: () => true,
         license: {
             url: 'about/license',
             title: t('admin.sidebar.license'),
