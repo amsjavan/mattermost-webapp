@@ -407,6 +407,7 @@ class MainMenu extends React.PureComponent {
                     />
                     <Menu.ItemToggleModalRedux
                         id='about'
+                        show={false}
                         modalId={ModalIdentifiers.ABOUT}
                         dialogType={AboutBuildModal}
                         text={formatMessage({id: 'navbar_dropdown.about', defaultMessage: 'About {appTitle}'}, {appTitle: this.props.siteName || 'Mattermost'})}
