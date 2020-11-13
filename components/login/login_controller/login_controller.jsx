@@ -559,7 +559,7 @@ class LoginController extends React.PureComponent {
                         />
                         <div className={'form-group' + errorClass}>
                             <input
-                                pattern='[0-9]*'
+                                //pattern='[0-9]*'
                                 id='loginId'
                                 className='form-control'
                                 ref={this.loginIdInput}
