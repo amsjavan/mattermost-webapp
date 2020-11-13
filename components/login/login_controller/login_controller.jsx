@@ -559,13 +559,14 @@ class LoginController extends React.PureComponent {
                         />
                         <div className={'form-group' + errorClass}>
                             <input
+                                pattern='[0-9]*'
                                 id='loginId'
                                 className='form-control'
                                 ref={this.loginIdInput}
                                 name='loginId'
                                 value={this.state.loginId}
                                 onChange={this.handleLoginIdChange}
-                                placeholder={this.createLoginPlaceholder()}
+                                placeholder='شماره موبایل'
                                 spellCheck='false'
                                 autoCapitalize='off'
                                 autoFocus={true}

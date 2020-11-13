@@ -59,6 +59,7 @@ export default class SignupEmail extends React.PureComponent {
         }
 
         this.emailRef = React.createRef();
+        this.nationalRef = React.createRef();
         this.nameRef = React.createRef();
         this.passwordRef = React.createRef();
     }
@@ -160,8 +161,28 @@ export default class SignupEmail extends React.PureComponent {
     }
 
     isUserValid = () => {
-        const providedEmail = this.emailRef.current.value.trim();
-        if (!providedEmail) {
+        // const providedEmail = this.emailRef.current.value.trim();
+        // if (!providedEmail) {
+        //     this.setState({
+        //         nameError: '',
+        //         emailError: (<FormattedMessage id='signup_user_completed.required'/>),
+        //         passwordError: '',
+        //         serverError: '',
+        //     });
+        //     return false;
+        // }
+
+        // if (!isEmail(providedEmail)) {
+        //     this.setState({
+        //         nameError: '',
+        //         emailError: (<FormattedMessage id='signup_user_completed.validEmail'/>),
+        //         passwordError: '',
+        //         serverError: '',
+        //     });
+        //     return false;
+        // }
+        const providedNationalCode = this.nationalRef.current.value.trim();
+        if (!providedNationalCode) {
             this.setState({
                 nameError: '',
                 emailError: (<FormattedMessage id='signup_user_completed.required'/>),
@@ -171,10 +192,10 @@ export default class SignupEmail extends React.PureComponent {
             return false;
         }
 
-        if (!isEmail(providedEmail)) {
+        if (Utils.isValidNationalCode(providedNationalCode)) {
             this.setState({
                 nameError: '',
-                emailError: (<FormattedMessage id='signup_user_completed.validEmail'/>),
+                emailError: (<FormattedMessage id='signup_user_completed.validNational'/>),
                 passwordError: '',
                 serverError: '',
             });
@@ -192,7 +213,7 @@ export default class SignupEmail extends React.PureComponent {
             return false;
         }
 
-        const usernameError = Utils.isValidUsername(providedUsername);
+        const usernameError = Utils.isValidPhoneNumber(providedUsername);
         if (usernameError === 'Cannot use a reserved word as a username.') {
             this.setState({
                 nameError: (<FormattedMessage id='signup_user_completed.reserved'/>),
@@ -253,7 +274,7 @@ export default class SignupEmail extends React.PureComponent {
             });
 
             const user = {
-                email: this.emailRef.current.value.trim(),
+                // email: this.emailRef.current.value.trim(),
                 username: this.nameRef.current.value.trim().toLowerCase(),
                 password: this.passwordRef.current.value,
                 allow_marketing: true,
@@ -293,6 +314,26 @@ export default class SignupEmail extends React.PureComponent {
             emailError = (<label className='control-label'>{this.state.emailError}</label>);
             emailHelpText = '';
             emailDivStyle += ' has-error';
+        }
+
+
+        let nationalError = null;
+        let nationalHelpText = (
+            <span
+                id='valid_national'
+                className='help-block'
+            >
+                <FormattedMessage
+                    id='signup_user_completed.nationalHelp'
+                    defaultMessage='Valid national required for sign-up'
+                />
+            </span>
+        );
+        let nationalDivStyle = 'form-group';
+        if (this.state.nationalError) {
+            nationalError = (<label className='control-label'>{this.state.emailError}</label>);
+            nationalHelpText = '';
+            nationalDivStyle += ' has-error';
         }
 
         let nameError = null;
@@ -343,7 +384,7 @@ export default class SignupEmail extends React.PureComponent {
         return (
             <form>
                 <div className='inner__content'>
-                    <div className={emailContainerStyle}>
+                    {/* <div className={emailContainerStyle}>
                         <h5 id='email_label'>
                             <strong>
                                 <FormattedMessage
@@ -369,6 +410,34 @@ export default class SignupEmail extends React.PureComponent {
                             {emailHelpText}
                         </div>
                     </div>
+                    {yourEmailIs} */}
+
+                    <div className={emailContainerStyle}>
+                        <h5 id='email_label'>
+                            <strong>
+                                <FormattedMessage
+                                    id='national_user_completed.whatis'
+                                    defaultMessage="What's your national code?"
+                                />
+                            </strong>
+                        </h5>
+                        <div className={emailDivStyle}>
+                            <input
+                                id='email'
+                                type='email'
+                                ref={this.nationalRef}
+                                className='form-control'
+                                defaultValue={this.state.email}
+                                placeholder='کد ملی'
+                                maxLength='128'
+                                autoFocus={true}
+                                spellCheck='false'
+                                autoCapitalize='off'
+                            />
+                            {nationalError}
+                            {nationalHelpText}
+                        </div>
+                    </div>
                     {yourEmailIs}
                     <div className='mt-8'>
                         <h5 id='name_label'>
@@ -385,7 +454,7 @@ export default class SignupEmail extends React.PureComponent {
                                 type='text'
                                 ref={this.nameRef}
                                 className='form-control'
-                                placeholder=''
+                                placeholder='989355275151'
                                 maxLength={Constants.MAX_USERNAME_LENGTH}
                                 spellCheck='false'
                                 autoCapitalize='off'

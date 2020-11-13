@@ -1108,6 +1108,30 @@ export function scrollbarWidth(el) {
     return el.offsetWidth - el.clientWidth;
 }
 
+export function isValidNationalCode(name) {
+    var error = '';
+    if (!name) {
+        error = 'This field is required';
+    } else if (name.length !== Constants.NATIONAL_CODE_LENGTH) {
+        error = 'Must be between ' + Constants.NATIONAL_CODE_LENGTH + ' characters';
+    } else if (!(/^[0-9.\-_]+$/).test(name)) {
+        error = "National Code must contain only numbers.";
+    }
+    return error;
+}
+
+export function isValidPhoneNumber(name) {
+    var error = '';
+    if (!name) {
+        error = 'This field is required';
+    } else if (name.length !== Constants.PHONENUMBER_LENGTH) {
+        error = 'Must be between ' + Constants.PHONENUMBER_LENGTH + ' characters';
+    } else if (!(/^[0-9.\-_]+$/).test(name)) {
+        error = "Phonenumber must contain only numbers.";
+    }
+    return error;
+}
+
 export function isValidUsername(name) {
     var error = '';
     if (!name) {
